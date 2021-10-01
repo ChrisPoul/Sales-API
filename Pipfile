@@ -9,6 +9,8 @@ flask-sqlalchemy = "*"
 flask-testing = "*"
 requests = "*"
 flask-restful = "*"
+mysqlclient = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
