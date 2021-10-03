@@ -18,10 +18,9 @@ class SoldProductTest(Test):
 class TestGetSoldProducts(SoldProductTest):
 
     def test_should_return_list_of_all_sold_products_given_get_request(self):
-        with self.client as client:
-            response = client.get(
-                url_for('sold_products')
-            )
+        response = self.client.get(
+            url_for('sold_products')
+        )
         
         self.assertEqual(len(response.json), 1)
 
@@ -29,10 +28,9 @@ class TestGetSoldProducts(SoldProductTest):
 class TestGetSoldProduct(SoldProductTest):
 
     def test_should_retrive_sold_product_given_get_request_and_valid_sold_product_id(self):
-        with self.client as client:
-            response = client.get(
-                url_for('sold_products', sold_product_id=self.sold_product.id)
-            )
+        response = self.client.get(
+            url_for('sold_products', sold_product_id=self.sold_product.id)
+        )
         
         self.assertEqual(response.json['receipt_id'], self.sold_product.receipt_id)
 
@@ -45,11 +43,10 @@ class TestAddSoldProduct(SoldProductTest):
             product_id=2,
             quantity=0
         )
-        with self.client as client:
-            client.post(
-                url_for('sold_products'),
-                data=sold_product_data
-            )
+        self.client.post(
+            url_for('sold_products'),
+            data=sold_product_data
+        )
         
         self.assertNotEqual(SoldProduct.query.filter_by(product_id=2).first(), None)
 
@@ -60,11 +57,10 @@ class TestUpdateSoldProduct(SoldProductTest):
         sold_product_data = dict(
             quantity=5
         )
-        with self.client as client:
-            client.put(
-                url_for('sold_products', sold_product_id=self.sold_product.id),
-                data=sold_product_data
-            )
+        self.client.put(
+            url_for('sold_products', sold_product_id=self.sold_product.id),
+            data=sold_product_data
+        )
 
         self.assertEqual(self.sold_product.quantity, 5)
 
@@ -72,9 +68,8 @@ class TestUpdateSoldProduct(SoldProductTest):
 class TestDeleteSoldProduct(SoldProductTest):
 
     def test_should_delete_sold_product_given_valid_receipt_id(self):
-        with self.client as client:
-            client.delete(
-                url_for('sold_products', sold_product_id=self.sold_product.id)
-            )
+        self.client.delete(
+            url_for('sold_products', sold_product_id=self.sold_product.id)
+        )
 
         self.assertNotIn(self.sold_product, self.db.session)

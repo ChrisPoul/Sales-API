@@ -16,10 +16,9 @@ class ReceiptTest(Test):
 class TestGetReceipts(ReceiptTest):
 
     def test_should_return_list_of_all_receipts_given_get_request(self):
-        with self.client as client:
-            response = client.get(
-                url_for('receipts')
-            )
+        response = self.client.get(
+            url_for('receipts')
+        )
         
         self.assertEqual(len(response.json), 1)
 
@@ -27,10 +26,9 @@ class TestGetReceipts(ReceiptTest):
 class TestGetReceipt(ReceiptTest):
 
     def test_should_retrive_receipt_given_get_request_and_valid_receipt_id(self):
-        with self.client as client:
-            response = client.get(
-                url_for('receipts', receipt_id=self.receipt.id)
-            )
+        response = self.client.get(
+            url_for('receipts', receipt_id=self.receipt.id)
+        )
         
         self.assertEqual(response.json['id'], self.receipt.id)
 
@@ -41,11 +39,10 @@ class TestAddReceipt(ReceiptTest):
         data = dict(
             customer_id=self.receipt.id
         )
-        with self.client as client:
-            client.post(
-                url_for('receipts'),
-                data=data
-            )
+        self.client.post(
+            url_for('receipts'),
+            data=data
+        )
 
         self.assertEqual(len(Receipt.query.all()), 2)
 
@@ -53,9 +50,8 @@ class TestAddReceipt(ReceiptTest):
 class TestDeleteReceipt(ReceiptTest):
 
     def test_should_delete_receipt_given_valid_receipt_id(self):
-        with self.client as client:
-            client.delete(
-                url_for('receipts', receipt_id=self.receipt.id)
-            )
+        self.client.delete(
+            url_for('receipts', receipt_id=self.receipt.id)
+        )
 
         self.assertNotIn(self.receipt, self.db.session)
