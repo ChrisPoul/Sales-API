@@ -1,6 +1,7 @@
 import os
 from flask import Flask
 from flask_migrate import Migrate
+from flask_cors import CORS
 
 
 def create_app(test_config=None):
@@ -9,6 +10,7 @@ def create_app(test_config=None):
         SECRET_KEY=os.environ.get('SECRET_KEY', default='dev'),
         SQLALCHEMY_TRACK_MODIFICATIONS=False
     )
+    CORS(app)
 
     if test_config is None:
         app.config.from_pyfile('config.py', silent=True)

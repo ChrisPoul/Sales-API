@@ -12,6 +12,7 @@ flask-restful = "*"
 mysqlclient = "*"
 python-dotenv = "*"
 flask-migrate = "*"
+flask-cors = "*"
 
 [dev-packages]
 
