@@ -7,10 +7,20 @@ product_fields = dict(
     price=fields.Integer
 )
 
+sold_product_fields = dict(
+    id=fields.Integer,
+    receipt_id=fields.Integer,
+    product_id=fields.Integer,
+    quantity=fields.Integer,
+    price=fields.Float,
+    total=fields.Float,
+    product=fields.Nested(product_fields)
+)
+
 receipt_fields = dict(
     id=fields.Integer,
     customer_id=fields.Integer,
-    sold_products=fields.List(fields.Nested(product_fields))
+    sold_products=fields.List(fields.Nested(sold_product_fields))
 )
 
 
@@ -38,14 +48,6 @@ class ReceiptResource(Resource):
         receipt.delete()
 
 
-sold_product_fields = dict(
-    id=fields.Integer,
-    receipt_id=fields.Integer,
-    product_id=fields.Integer,
-    quantity=fields.Integer
-)
-
-
 class SoldProductResource(Resource):
 
     @marshal_with(sold_product_fields)
@@ -59,7 +61,8 @@ class SoldProductResource(Resource):
         sold_product = SoldProduct(
             receipt_id=request.form['receipt_id'],
             product_id=request.form['product_id'],
-            quantity=request.form['quantity']
+            quantity=request.form['quantity'],
+            price=request.form['price']
         )
         sold_product.add()
 

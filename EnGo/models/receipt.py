@@ -23,9 +23,15 @@ class SoldProduct(db.Model, Model):
     receipt_id = Column(Integer, db.ForeignKey('receipt.id'), nullable=False)
     product_id = Column(Integer, nullable=False)
     quantity = Column(Integer, nullable=False, default=0)
+    price = Column(Integer, nullable=False, default=0)
     time_created = Column(DateTime, server_default=func.now())
     time_updated = Column(DateTime, server_onupdate=func.now())
 
     @property
     def product(self):
-        return get(f'http://127.0.0.1:5000/inventory/products/{self.product_id}').json()
+        return get(f'http://127.0.0.1:5100/inventory/products/{self.product_id}').json()
+
+    @property
+    def total(self):
+        return self.quantity * self.price
+
