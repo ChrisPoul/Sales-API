@@ -13,6 +13,7 @@ python-dotenv = "*"
 flask-migrate = "*"
 flask-cors = "*"
 pymysql = "*"
+cryptography = "*"
 
 [dev-packages]
 
