@@ -34,4 +34,3 @@ class SoldProduct(db.Model, Model):
     @property
     def total(self):
         return self.quantity * self.price
-
