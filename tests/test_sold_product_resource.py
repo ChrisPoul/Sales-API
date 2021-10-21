@@ -41,7 +41,8 @@ class TestAddSoldProduct(SoldProductTest):
         sold_product_data = dict(
             receipt_id=1,
             product_id=2,
-            quantity=0
+            quantity=0,
+            price=10
         )
         self.client.post(
             url_for('sold_products'),

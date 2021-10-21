@@ -1,4 +1,5 @@
 from requests import get
+from requests.exceptions import ConnectionError
 from sqlalchemy import (
     Column, Integer, DateTime
 )
@@ -29,7 +30,12 @@ class SoldProduct(db.Model, Model):
 
     @property
     def product(self):
-        return get(f'http://127.0.0.1:5100/inventory/products/{self.product_id}').json()
+        try:
+            product = get(f'http://127.0.0.1:5100/inventory/products/{self.product_id}').json()
+        except ConnectionError:
+            product = None
+        
+        return product
 
     @property
     def total(self):
