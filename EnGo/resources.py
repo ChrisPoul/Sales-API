@@ -2,19 +2,13 @@ from flask import request
 from flask_restful import Resource, marshal_with, fields
 from .models.receipt import Receipt, SoldProduct
 
-product_fields = dict(
-    name=fields.String,
-    price=fields.Integer
-)
-
 sold_product_fields = dict(
     id=fields.Integer,
     receipt_id=fields.Integer,
     product_id=fields.Integer,
     quantity=fields.Integer,
     price=fields.Float,
-    total=fields.Float,
-    product=fields.Nested(product_fields)
+    total=fields.Float
 )
 
 receipt_fields = dict(

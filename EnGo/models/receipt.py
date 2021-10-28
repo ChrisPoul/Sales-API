@@ -29,14 +29,5 @@ class SoldProduct(db.Model, Model):
     time_updated = Column(DateTime, server_onupdate=func.now())
 
     @property
-    def product(self):
-        try:
-            product = get(f'http://127.0.0.1:5100/inventory/products/{self.product_id}').json()
-        except ConnectionError:
-            product = None
-        
-        return product
-
-    @property
     def total(self):
         return self.quantity * self.price
