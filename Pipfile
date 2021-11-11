@@ -12,8 +12,8 @@ flask-restful = "*"
 python-dotenv = "*"
 flask-migrate = "*"
 flask-cors = "*"
-pymysql = "*"
 cryptography = "*"
+mysqlclient = "*"
 
 [dev-packages]
 
