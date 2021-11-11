@@ -1,5 +1,3 @@
-from requests import get
-from requests.exceptions import ConnectionError
 from sqlalchemy import (
     Column, Integer, DateTime
 )
@@ -17,17 +15,3 @@ class Receipt(db.Model, Model):
         backref='receipt',
         cascade='all, delete-orphan'
     )
-
-
-class SoldProduct(db.Model, Model):
-    id = Column(Integer, primary_key=True)
-    receipt_id = Column(Integer, db.ForeignKey('receipt.id'), nullable=False)
-    product_id = Column(Integer, nullable=False)
-    quantity = Column(Integer, nullable=False, default=0)
-    price = Column(Integer, nullable=False, default=0)
-    time_created = Column(DateTime, server_default=func.now())
-    time_updated = Column(DateTime, server_onupdate=func.now())
-
-    @property
-    def total(self):
-        return self.quantity * self.price

@@ -1,6 +1,7 @@
 from flask import request
 from flask_restful import Resource, marshal_with, fields
-from .models.receipt import Receipt, SoldProduct
+from .models.receipt import Receipt
+from .models.sold_product import SoldProduct
 
 sold_product_fields = dict(
     id=fields.Integer,
