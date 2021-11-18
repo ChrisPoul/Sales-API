@@ -61,7 +61,7 @@ class TestUpdateSoldProduct(SoldProductTest):
         )
         self.client.put(
             url_for('sold_products', sold_product_id=self.sold_product.id),
-            data=sold_product_data
+            json=sold_product_data
         )
 
         self.assertEqual(self.sold_product.quantity, 5)
