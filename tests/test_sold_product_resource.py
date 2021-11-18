@@ -44,10 +44,11 @@ class TestAddSoldProduct(SoldProductTest):
             quantity=0,
             price=10
         )
-        self.client.post(
-            url_for('sold_products'),
-            data=sold_product_data
-        )
+        with self.client as client:
+            client.post(
+                url_for('sold_products'),
+                json=sold_product_data
+            )
         
         self.assertNotEqual(SoldProduct.query.filter_by(product_id=2).first(), None)
 

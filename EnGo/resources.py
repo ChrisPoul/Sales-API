@@ -52,12 +52,13 @@ class SoldProductResource(Resource):
         
         return SoldProduct.query.get(sold_product_id)
 
-    def post(self):    
+    def post(self):
+        form = request.get_json()
         sold_product = SoldProduct(
-            receipt_id=request.form['receipt_id'],
-            product_id=request.form['product_id'],
-            quantity=request.form['quantity'],
-            price=request.form['price']
+            receipt_id=form['receipt_id'],
+            product_id=form['product_id'],
+            quantity=form['quantity'],
+            price=form['price']
         )
         sold_product.add()
 
