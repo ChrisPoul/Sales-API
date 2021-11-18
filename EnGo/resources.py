@@ -29,8 +29,9 @@ class ReceiptResource(Resource):
         return Receipt.query.get(receipt_id)
 
     def post(self):
+        form = request.get_json()
         receipt = Receipt(
-            customer_id=request.form['customer_id']
+            customer_id=form['customer_id']
         )
         receipt.add()
 

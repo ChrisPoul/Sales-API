@@ -41,7 +41,7 @@ class TestAddReceipt(ReceiptTest):
         )
         self.client.post(
             url_for('receipts'),
-            data=data
+            json=data
         )
 
         self.assertEqual(len(Receipt.query.all()), 2)
