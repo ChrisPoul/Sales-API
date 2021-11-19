@@ -19,7 +19,7 @@ class TestGetReceipts(ReceiptTest):
         response = self.client.get(
             url_for('receipts')
         )
-        
+
         self.assertEqual(len(response.json), 1)
 
 
@@ -29,12 +29,12 @@ class TestGetReceipt(ReceiptTest):
         response = self.client.get(
             url_for('receipts', receipt_id=self.receipt.id)
         )
-        
+
         self.assertEqual(response.json['id'], self.receipt.id)
 
 
 class TestAddReceipt(ReceiptTest):
-    
+
     def test_should_add_receipt_given_post_request_with_valid_receipt_data(self):
         data = dict(
             customer_id=self.receipt.id

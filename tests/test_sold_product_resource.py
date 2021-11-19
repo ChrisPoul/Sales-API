@@ -21,7 +21,7 @@ class TestGetSoldProducts(SoldProductTest):
         response = self.client.get(
             url_for('sold_products')
         )
-        
+
         self.assertEqual(len(response.json), 1)
 
 
@@ -31,8 +31,9 @@ class TestGetSoldProduct(SoldProductTest):
         response = self.client.get(
             url_for('sold_products', sold_product_id=self.sold_product.id)
         )
-        
-        self.assertEqual(response.json['receipt_id'], self.sold_product.receipt_id)
+
+        self.assertEqual(response.json['receipt_id'],
+                         self.sold_product.receipt_id)
 
 
 class TestAddSoldProduct(SoldProductTest):
@@ -49,8 +50,9 @@ class TestAddSoldProduct(SoldProductTest):
                 url_for('sold_products'),
                 json=sold_product_data
             )
-        
-        self.assertNotEqual(SoldProduct.query.filter_by(product_id=2).first(), None)
+
+        self.assertNotEqual(SoldProduct.query.filter_by(
+            product_id=2).first(), None)
 
 
 class TestUpdateSoldProduct(SoldProductTest):
