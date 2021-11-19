@@ -1,6 +1,6 @@
 from flask_testing import TestCase
-from EnGo import create_app
-from EnGo.models import db
+from Sales import create_app
+from Sales.models import db
 
 
 class Test(TestCase):

@@ -1,6 +1,6 @@
 from . import Test
 from flask import url_for
-from EnGo.models.receipt import Receipt
+from Sales.models.receipt import Receipt
 
 
 class ReceiptTest(Test):

@@ -2,7 +2,7 @@ from flask import request
 from flask_restful import (
     Resource, marshal_with, fields
 )
-from EnGo.models.receipt import Receipt
+from Sales.models.receipt import Receipt
 from .sold_product import sold_product_fields
 
 receipt_fields = dict(
