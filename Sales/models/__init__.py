@@ -18,3 +18,8 @@ class Model:
     def delete(self):
         db.session.delete(self)
         db.session.commit()
+
+
+from .customer import Customer
+from .receipt import Receipt
+from .sold_product import SoldProduct
