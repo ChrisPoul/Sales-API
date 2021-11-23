@@ -49,3 +49,18 @@ class TestAddCustomer(CustomerTest):
         customers = Customer.query.all()
 
         self.assertEqual(len(customers), 2)
+
+
+class TestUpdateCustomer(CustomerTest):
+
+    def test_should_update_customer_given_put_request_and_valid_customer_id_and_customer_data(self):
+        customer_data = dict(
+            name="New Name",
+            phone="New Phone"
+        )
+        self.client.put(
+            url_for("customers", customer_id=self.customer.id),
+            json=customer_data
+        )
+
+        self.assertEqual(self.customer.name, "New Name")

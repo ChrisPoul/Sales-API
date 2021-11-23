@@ -29,3 +29,7 @@ class CustomerResource(Resource):
         form = request.get_json()
         customer = Customer(**form)
         customer.add()
+
+    def put(self, customer_id):
+        customer = Customer.query.get(customer_id)
+        customer.update(request.get_json())
