@@ -64,3 +64,13 @@ class TestUpdateCustomer(CustomerTest):
         )
 
         self.assertEqual(self.customer.name, "New Name")
+
+
+class TestDeleteCustomer(CustomerTest):
+
+    def test_should_delete_customer_given_delete_request_and_valid_customer_id(self):
+        self.client.delete(
+            url_for("customers", customer_id=self.customer.id)
+        )
+
+        self.assertNotIn(self.customer, self.db.session)
