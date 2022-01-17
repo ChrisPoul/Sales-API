@@ -8,3 +8,9 @@ class TestValidateName(CustomerTest):
         error = self.customer.validation.validate_name()
 
         self.assertEqual(error, None)
+
+    def test_should_return_error_given_non_alphabetical_characters_in_name(self):
+        self.customer.name = "1nv@l1id n@m3"
+        error = self.customer.validation.validate_name()
+
+        self.assertNotEqual(error, None)
