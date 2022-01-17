@@ -3,7 +3,7 @@ from sqlalchemy import (
     String
 )
 from sqlalchemy.sql import func
-from . import db, Model
+from Sales.models import db, Model
 
 
 class Customer(db.Model, Model):
@@ -18,3 +18,8 @@ class Customer(db.Model, Model):
         backref="customer",
         cascade="all, delete-orphan"
     )
+
+    @property
+    def validation(self):
+        from .validation import CustomerValidation
+        return CustomerValidation(self)
