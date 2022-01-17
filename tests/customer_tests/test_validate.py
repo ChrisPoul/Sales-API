@@ -14,3 +14,9 @@ class TestValidateName(CustomerTest):
         error = self.customer.validation.validate_name()
 
         self.assertNotEqual(error, None)
+
+    def test_should_return_error_given_empty_name(self):
+        self.customer.name = ""
+        error = self.customer.validation.validate_name()
+
+        self.assertNotEqual(error, None)
