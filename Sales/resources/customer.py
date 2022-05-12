@@ -26,13 +26,14 @@ class CustomerResource(Resource):
         return Customer.query.all()
 
     def post(self):
-        form = request.get_json()
-        customer = Customer(**form)
+        customer_form = request.get_json()
+        customer = Customer(**customer_form)
         customer.add()
 
     def put(self, customer_id):
+        customer_form = request.get_json()
         customer = Customer.query.get(customer_id)
-        customer.update(request.get_json())
+        customer.update(customer_form)
 
     def delete(self, customer_id):
         customer = Customer.query.get(customer_id)

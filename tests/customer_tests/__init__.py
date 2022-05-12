@@ -1,5 +1,5 @@
 from tests import Test
-from Sales.models import Customer
+from Sales.models.customer import Customer
 
 
 class CustomerTest(Test):

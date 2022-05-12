@@ -1,6 +1,6 @@
 from flask import url_for
 from . import CustomerTest
-from Sales.models import Customer
+from Sales.models.customer import Customer
 
 
 class TestGetCustomer(CustomerTest):

@@ -22,7 +22,7 @@ class TestValidateName(CustomerTest):
         self.assertNotEqual(error, None)
 
 
-class ValidatePhone(CustomerTest):
+class TestValidatePhone(CustomerTest):
 
     def test_should_not_return_error_given_valid_phone(self):
         self.customer.phone = "222 123 4567"
