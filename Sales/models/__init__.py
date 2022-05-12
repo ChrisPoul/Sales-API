@@ -9,10 +9,10 @@ class Model:
         db.session.add(self)
         db.session.commit()
 
-    def update(self, data=None):
-        if data is not None:
-            for attr in data:
-                setattr(self, attr, data[attr])
+    def update(self, **kwargs):
+        print(kwargs)
+        for attr in kwargs:
+            setattr(self, attr, kwargs[attr])
         db.session.commit()
 
     def delete(self):

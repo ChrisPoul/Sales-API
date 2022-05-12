@@ -33,7 +33,7 @@ class CustomerResource(Resource):
     def put(self, customer_id):
         customer_form = request.get_json()
         customer = Customer.query.get(customer_id)
-        customer.update(customer_form)
+        customer.update(**customer_form)
 
     def delete(self, customer_id):
         customer = Customer.query.get(customer_id)
