@@ -8,7 +8,7 @@ class ReceiptTest(Test):
     def setUp(self):
         Test.setUp(self)
         self.receipt = Receipt(
-            customer_id=1
+            user_id=1
         )
         self.receipt.add()
 
@@ -37,7 +37,7 @@ class TestAddReceipt(ReceiptTest):
 
     def test_should_add_receipt_given_post_request_with_valid_receipt_data(self):
         data = dict(
-            customer_id=self.receipt.id
+            user_id=1
         )
         self.client.post(
             url_for('receipts'),

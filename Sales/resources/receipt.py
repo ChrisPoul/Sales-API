@@ -7,7 +7,7 @@ from .sold_product import sold_product_fields
 
 receipt_fields = dict(
     id=fields.Integer,
-    customer_id=fields.Integer,
+    user_id=fields.Integer,
     sold_products=fields.List(fields.Nested(sold_product_fields))
 )
 
@@ -24,7 +24,7 @@ class ReceiptResource(Resource):
     def post(self):
         form = request.get_json()
         receipt = Receipt(
-            customer_id=form['customer_id']
+            user_id=form['user_id']
         )
         receipt.request.add()
 
