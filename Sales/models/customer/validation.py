@@ -4,6 +4,13 @@ class CustomerValidation:
         self.customer = customer
         self.error = None
 
+    def validate(self):
+        self.validate_name()
+        if self.error is None:
+            self.validate_phone()
+
+        return self.error
+
     def validate_name(self):
         customer_name = self.customer.name.replace(" ", "")
         if customer_name.isalpha() is False:

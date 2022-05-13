@@ -26,11 +26,11 @@ class ReceiptResource(Resource):
         receipt = Receipt(
             customer_id=form['customer_id']
         )
-        receipt.add()
+        receipt.request.add()
 
     def put(self, receipt_id):
         receipt = Receipt.query.get(receipt_id)
-        receipt.update()
+        receipt.request.update()
 
     def delete(self, receipt_id):
         receipt = Receipt.query.get(receipt_id)

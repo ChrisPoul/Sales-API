@@ -29,12 +29,12 @@ class SoldProductResource(Resource):
             quantity=form['quantity'],
             price=form['price']
         )
-        sold_product.add()
+        sold_product.request.add()
 
     def put(self, sold_product_id: int):
         sold_product_form = request.get_json()
         sold_product = SoldProduct.query.get(sold_product_id)
-        sold_product.update(**sold_product_form)
+        sold_product.request.update(**sold_product_form)
 
     def delete(self, sold_product_id):
         sold_product = SoldProduct.query.get(sold_product_id)

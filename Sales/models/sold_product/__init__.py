@@ -2,7 +2,7 @@ from sqlalchemy import (
     Column, Integer, DateTime
 )
 from sqlalchemy.sql import func
-from . import db, Model
+from Sales.models import db, Model
 
 
 class SoldProduct(db.Model, Model):
@@ -17,3 +17,8 @@ class SoldProduct(db.Model, Model):
     @property
     def total(self):
         return self.quantity * self.price
+
+    @property
+    def validation(self):
+        from .validation import SoldProductValidation
+        return SoldProductValidation(self)

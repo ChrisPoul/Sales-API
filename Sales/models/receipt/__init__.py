@@ -2,7 +2,7 @@ from sqlalchemy import (
     Column, Integer, DateTime, ForeignKey
 )
 from sqlalchemy.sql import func
-from . import db, Model
+from Sales.models import db, Model
 
 
 class Receipt(db.Model, Model):
@@ -15,3 +15,8 @@ class Receipt(db.Model, Model):
         backref='receipt',
         cascade='all, delete-orphan'
     )
+
+    @property
+    def validation(self):
+        from .validation import ReceiptValidation
+        return ReceiptValidation(self)
